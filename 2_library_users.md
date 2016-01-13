@@ -8,7 +8,7 @@ Let's add our second model a `Library` model that will later have books.
 rails g model library name:string floor_count:integer floor_area:integer
 ```
 
-We want a `user` to be able to join a library, but this means a `m:n` relationship. A user will have many libraries and library will have many users.
+We want a `user` to be able to join a library, but this means a `n:n` relationship. A user will have many libraries and library will have many users.
 
 Thus we need a `library_user` model.
 
@@ -191,7 +191,7 @@ You should now test this out in the console.
 > user.libraries
 #=> [ <#Library ... @name="SFPL" @id=1> ]
 ```
-In order for us to have users join libraries, we need to first create a `library_users` controller.
+Joining a library requires creating `library_users` controller
 
 ```bash
 rails g controller library_users
@@ -223,7 +223,8 @@ class LibraryUsersController < ApplicationController
 end
 ```
 
-Then we can have the `index` action list the user's libraries (`app/views/library_users/index.html.erb`):
+Then we can have the libraries index render the user and the libraries:
+
 
 ```html
 
